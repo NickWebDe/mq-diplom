@@ -22,36 +22,31 @@
   font-style: normal;
 }
 
-.hidden, body::after {
+.popup {
   display: flex;
   justify-content: center;
+  align-items: center;
   display: none;
-} 
+}
+
+.popup {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
 
 .body {
   position: relative;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #000000;
-  opacity: 0.7;
-  z-index: 1;
-}
-
 .popup-container {
   width: 371px;
-  position: fixed;
+  position: relative;
   background-color: #FFFFFF;
   padding: 50px 30px;
-  z-index: 2;
-  margin-top: 230px;
+
 } 
 
 .popup-container::before {
@@ -134,13 +129,40 @@ margin-bottom: ;
   margin-bottom: 30px;
 }
 
-.group-text {
+
+.radio-group-text::before {
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../svg/form-empty-circle.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 20px;
+}
+
+.radio:checked ~ .radio-group-text::before {
+background-image: url("../svg/form-circle.svg"); 
+}
+
+.radio-group-text {
   font-family: OpenSans-Regular;
   font-size: 0.93em;
   font-weight: 400;
   color: #0f0d0e;
   margin-bottom: 10px;
 }
+
+
+.radio {
+position: absolute;
+clip: rect(1px, 1px, 1px, 1px);
+height: 1px;
+width: 1px;
+}
+
 
 .textarea {
   width: 100%;
@@ -229,7 +251,7 @@ margin-bottom: ;
 }
 
 .title-container {
-  width: 699px;
+  max-width: 699px;
   z-index: 1;
   margin-top: 98px;
   margin-left: auto;
@@ -922,10 +944,6 @@ margin-bottom: ;
 
 @media (min-width: 641px) and (max-width: 1200px) {
 
-  .popup-container {
-    margin-left: 20%;
-  }
-
   .header {
     background-image: url(../images/banner-bg-tablet.jpg);
   }
@@ -999,17 +1017,10 @@ margin-bottom: ;
 
   .text-container {
     width: 100%;
-  }
-
-  .text-container::after {
-    display: block;
-    content: "";
-    width: 381px;
-    height: 4px;
-    background-color: #eeeeee;
-    margin-top: 18px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-bottom: 18px;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #eeeeee
   }
   .product-container {
     flex-wrap: wrap;
@@ -1040,10 +1051,6 @@ margin-bottom: ;
 
 @media (max-width: 640px) {
 
-  .popup-container {
-    margin-left: 15px;
-  }
-
   .header {
     background-image: url(../images/banner-mobile.jpg);
   }
@@ -1073,7 +1080,6 @@ margin-bottom: ;
   }
 
   .title-container {
-    width: 100%;
     margin: 0 auto;
   }
   .title {
@@ -1132,15 +1138,11 @@ margin-bottom: ;
   .img-container {
     margin: 0px 0px 15px;
   }
-  .text-container::after {
-    display: block;
-    content: "";
-    width: 100%;
-    height: 4px;
-    background-color: #eeeeee;
-    margin-top: 21px;
-    margin-left: auto;
-    margin-right: auto;
+  .text-container {
+    padding-bottom: 18px;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #eeeeee
   }
   .product-container {
     display: block;
